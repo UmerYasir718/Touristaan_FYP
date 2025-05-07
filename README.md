@@ -53,8 +53,8 @@ Touristaan is a modern, full-featured tourism website that allows users to explo
 ## Getting Started
 
 ### Prerequisites
-- Node.js (v14 or later)
-- npm or yarn
+- Node.js (v16.0.0 or later)
+- npm (v8.0.0 or later) or yarn (v1.22.0 or later)
 
 ### Installation
 1. Clone the repository
