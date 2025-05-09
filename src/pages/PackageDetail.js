@@ -151,14 +151,9 @@ const TourRouteMap = ({ coordinates }) => {
     parseFloat(coord.lng),
   ]);
 
-  // Calculate center of the map (average of all coordinates)
-  const center = positions.reduce(
-    (acc, curr) => [
-      acc[0] + curr[0] / positions.length,
-      acc[1] + curr[1] / positions.length,
-    ],
-    [0, 0]
-  );
+  // Set center of the map to Pakistan's coordinates
+  const center = [30.3753, 69.3451]; // Pakistan's geographical center
+  const defaultZoom = 0; // Lower zoom level to show more of Pakistan
 
   // Function to set map bounds
   const MapBounds = () => {
@@ -168,6 +163,11 @@ const TourRouteMap = ({ coordinates }) => {
       if (positions.length > 0) {
         const bounds = L.latLngBounds(positions);
         map.fitBounds(bounds, { padding: [50, 50] });
+
+        // Force a map refresh to ensure it renders correctly
+        setTimeout(() => {
+          map.invalidateSize();
+        }, 100);
       }
     }, [map]);
 
@@ -177,11 +177,16 @@ const TourRouteMap = ({ coordinates }) => {
   return (
     <div className="map-container">
       <h5 className="mb-3">Tour Route: {locationNames}</h5>
-      <div style={{ height: "400px", width: "100%", overflow: "hidden" }}>
+      <div style={{ height: "400px", width: "100%", position: "relative" }}>
         <MapContainer
           center={center}
-          zoom={10}
+          zoom={defaultZoom}
           style={{ height: "100%", width: "100%" }}
+          scrollWheelZoom={true}
+          dragging={true}
+          touchZoom={true}
+          doubleClickZoom={true}
+          zoomControl={true}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

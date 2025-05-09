@@ -381,7 +381,7 @@ const PaymentForm = ({
 
         // Initialize Stripe only when needed
         const stripePromise = stripeModule.loadStripe(
-          "pk_test_51NnIorCqPnESIcUCUezx9Ae1Tfcxrnhqaxi0KYluXByG3dEuMUMlLY8FcJG3eUzajEWLL8oyS7OJuzUgMKcOpGlH00QwR1IcOn"
+          "pk_test_51RM2kGP0itsFX4U4Ywo4iOi5L8jqMKpWtJ3tOOhaDyvCGWdAqH6u4Wga65B06bOOciyzib1hmML1WTxPdg5WK35400k2nIPQpB"
         );
         setStripeJs({ loadStripe: stripeModule.loadStripe, stripePromise });
         setStripeLoaded(true);
